@@ -1,0 +1,1242 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Виталий Санников — Реабилитолог</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --black: #0a0a0a;
+            --white: #fafafa;
+            --gray-50: #f7f7f7;
+            --gray-100: #f0f0f0;
+            --gray-200: #e0e0e0;
+            --gray-300: #c0c0c0;
+            --gray-400: #888888;
+            --gray-500: #666666;
+            --gray-600: #444444;
+            --gray-700: #2a2a2a;
+            --gray-800: #1a1a1a;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--white);
+            color: var(--black);
+            line-height: 1.7;
+            font-weight: 300;
+            letter-spacing: 0.01em;
+            -webkit-font-smoothing: antialiased;
+            cursor: auto;
+            overflow-x: hidden;
+        }
+
+        /* Selection */
+        ::selection {
+            background: var(--black);
+            color: var(--white);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 80px;
+        }
+
+        /* Typography Scale */
+        h1, h2, h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 400;
+            line-height: 1.05;
+            letter-spacing: -0.02em;
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            mix-blend-mode: difference;
+            padding: 40px 0;
+        }
+
+        .nav-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+        }
+
+        .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.25rem;
+            font-weight: 500;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: white;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 4rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: white;
+            font-size: 0.8rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            position: relative;
+            padding-bottom: 4px;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: white;
+            transition: width 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Section Transitions */
+        .section-reveal {
+            opacity: 0;
+            transform: translateY(60px);
+            transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), 
+                        transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .section-reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Hero */
+        .hero {
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: 55% 45%;
+            position: relative;
+        }
+
+        .hero-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 160px 80px 120px;
+            position: relative;
+        }
+
+        .hero-content::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 40px;
+            width: 1px;
+            height: 200px;
+            background: var(--gray-200);
+            transform: translateY(-50%);
+        }
+
+        .hero-label {
+            font-size: 0.7rem;
+            letter-spacing: 0.4em;
+            text-transform: uppercase;
+            color: var(--gray-400);
+            margin-bottom: 3rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .hero-label::before {
+            content: '';
+            width: 60px;
+            height: 1px;
+            background: var(--gray-300);
+        }
+
+        .hero-title {
+            font-size: clamp(3.5rem, 6vw, 6rem);
+            margin-bottom: 2.5rem;
+            font-weight: 400;
+        }
+
+        .hero-title em {
+            font-style: italic;
+            color: var(--gray-500);
+        }
+
+        .hero-subtitle {
+            font-size: 1.1rem;
+            color: var(--gray-600);
+            max-width: 380px;
+            line-height: 1.9;
+            margin-bottom: 4rem;
+            font-weight: 300;
+        }
+
+        .hero-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 1.5rem;
+            text-decoration: none;
+            color: var(--black);
+            font-size: 0.85rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            position: relative;
+            width: fit-content;
+            padding-bottom: 8px;
+        }
+
+        .hero-cta::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: var(--black);
+            transform: scaleX(1);
+            transform-origin: left;
+            transition: transform 0.4s;
+        }
+
+        .hero-cta:hover::after {
+            transform: scaleX(0);
+            transform-origin: right;
+        }
+
+        .hero-cta-arrow {
+            transition: transform 0.3s;
+        }
+
+        .hero-cta:hover .hero-cta-arrow {
+            transform: translateX(8px);
+        }
+
+        .hero-visual {
+            position: relative;
+            background: var(--gray-100);
+            overflow: hidden;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(100%) contrast(1.1);
+        }
+
+        .hero-visual-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, transparent 60%, rgba(0,0,0,0.03));
+        }
+
+        /* Scroll Indicator */
+        .scroll-line {
+            position: absolute;
+            bottom: 60px;
+            left: 80px;
+            width: 1px;
+            height: 80px;
+            background: var(--gray-200);
+            overflow: hidden;
+        }
+
+        .scroll-line::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 50%;
+            background: var(--black);
+            animation: scroll 2s cubic-bezier(0.77, 0, 0.175, 1) infinite;
+        }
+
+        @keyframes scroll {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(200%); }
+        }
+
+        /* Section Divider */
+        .section-divider {
+            height: 1px;
+            background: var(--gray-200);
+            margin: 0 80px;
+            opacity: 0;
+            transform: scaleX(0);
+            transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .section-divider.visible {
+            opacity: 1;
+            transform: scaleX(1);
+        }
+
+        /* Services */
+        .services {
+            padding: 140px 0;
+        }
+
+        .section-header {
+            display: grid;
+            grid-template-columns: 100px 1fr;
+            gap: 80px;
+            margin-bottom: 100px;
+            align-items: start;
+        }
+
+        .section-index {
+            font-size: 0.75rem;
+            letter-spacing: 0.2em;
+            color: var(--gray-400);
+            text-transform: uppercase;
+            padding-top: 1rem;
+            border-top: 1px solid var(--gray-200);
+        }
+
+        .section-title {
+            font-size: clamp(2.5rem, 4vw, 3.5rem);
+            max-width: 500px;
+        }
+
+        .services-list {
+            border-top: 1px solid var(--gray-200);
+        }
+
+        .service-item {
+            border-bottom: 1px solid var(--gray-200);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-header {
+            display: grid;
+            grid-template-columns: 80px 1fr 100px;
+            gap: 40px;
+            padding: 40px 0;
+            align-items: center;
+            cursor: pointer;
+            transition: background 0.4s;
+        }
+
+        .service-header:hover {
+            background: var(--gray-50);
+        }
+
+        .service-num {
+            font-size: 0.85rem;
+            color: var(--gray-400);
+            font-weight: 400;
+        }
+
+        .service-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            font-weight: 400;
+            transition: transform 0.4s;
+        }
+
+        .service-header:hover .service-name {
+            transform: translateX(20px);
+        }
+
+        .service-toggle {
+            width: 40px;
+            height: 40px;
+            border: 1px solid var(--gray-300);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: var(--gray-400);
+            transition: all 0.4s;
+            justify-self: end;
+        }
+
+        .service-header:hover .service-toggle {
+            border-color: var(--black);
+            color: var(--black);
+            transform: rotate(90deg);
+        }
+
+        .service-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .service-item.active .service-content {
+            max-height: 400px;
+        }
+
+        .service-item.active .service-toggle {
+            transform: rotate(45deg);
+            border-color: var(--black);
+            color: var(--black);
+        }
+
+        .service-inner {
+            padding: 0 0 60px 120px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+        }
+
+        .service-desc {
+            color: var(--gray-600);
+            line-height: 1.9;
+            font-size: 1rem;
+        }
+
+        .service-features {
+            list-style: none;
+        }
+
+        .service-features li {
+            padding: 12px 0;
+            border-bottom: 1px solid var(--gray-100);
+            font-size: 0.95rem;
+            color: var(--gray-700);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .service-features li::after {
+            content: '→';
+            color: var(--gray-300);
+            opacity: 0;
+            transition: all 0.3s;
+        }
+
+        .service-features li:hover::after {
+            opacity: 1;
+            color: var(--black);
+            transform: translateX(5px);
+        }
+
+        /* Quote Section */
+        .quote-section {
+            padding: 160px 0;
+            background: var(--black);
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .quote-section::before {
+            content: '"';
+            position: absolute;
+            top: 40px;
+            left: 80px;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 20rem;
+            color: rgba(255,255,255,0.03);
+            line-height: 1;
+            pointer-events: none;
+        }
+
+        .quote-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .quote-image {
+            position: relative;
+        }
+
+        .quote-image img {
+            width: 100%;
+            filter: grayscale(100%);
+            opacity: 0.9;
+        }
+
+        .quote-content blockquote {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1.75rem, 3vw, 2.5rem);
+            line-height: 1.5;
+            font-weight: 400;
+            margin-bottom: 3rem;
+            font-style: italic;
+        }
+
+        .quote-author {
+            border-top: 1px solid rgba(255,255,255,0.2);
+            padding-top: 2rem;
+        }
+
+        .quote-name {
+            font-size: 1rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        .quote-role {
+            font-size: 0.9rem;
+            color: var(--gray-400);
+        }
+
+        /* Credentials */
+        .credentials {
+            padding: 140px 0;
+        }
+
+        .credentials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1px;
+            background: var(--gray-200);
+            margin-top: 80px;
+        }
+
+        .credential-card {
+            background: var(--white);
+            padding: 60px;
+            transition: background 0.4s;
+        }
+
+        .credential-card:hover {
+            background: var(--gray-50);
+        }
+
+        .credential-year {
+            font-size: 0.75rem;
+            letter-spacing: 0.2em;
+            color: var(--gray-400);
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .credential-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        .credential-text {
+            font-size: 0.95rem;
+            color: var(--gray-600);
+            line-height: 1.8;
+        }
+
+        /* Contact */
+        .contact {
+            padding: 100px 0;
+            border-top: 1px solid var(--gray-200);
+        }
+
+        .contact-grid {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .contact-item {
+            text-decoration: none;
+            color: var(--black);
+            position: relative;
+            padding: 20px 0;
+        }
+
+        .contact-item::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--black);
+            transition: width 0.4s;
+        }
+
+        .contact-item:hover::after {
+            width: 100%;
+        }
+
+        .contact-label {
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+            color: var(--gray-400);
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .contact-value {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 500;
+        }
+
+        /* Footer */
+        .footer {
+            padding: 40px 0;
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--gray-400);
+            letter-spacing: 0.05em;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .lang-switch {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .lang-switch button {
+            background: none;
+            border: none;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            color: var(--gray-400);
+            cursor: pointer;
+            padding: 0;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            transition: color 0.3s;
+        }
+
+        .lang-switch button.active {
+            color: var(--black);
+            font-weight: 500;
+        }
+
+        .lang-switch button:hover {
+            color: var(--black);
+        }
+
+        .lang-divider {
+            width: 1px;
+            height: 12px;
+            background: var(--gray-300);
+        }
+
+        /* Print Styles */
+        @media print {
+            * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+
+            body {
+                cursor: auto;
+                font-size: 11pt;
+                line-height: 1.5;
+                color: #000;
+                background: #fff;
+            }
+
+            .nav,
+            .scroll-line,
+            .hero-cta,
+            .lang-switch,
+            .service-toggle,
+            .contact-item::after {
+                display: none !important;
+            }
+
+            .hero {
+                min-height: auto;
+                display: block;
+                page-break-after: always;
+            }
+
+            .hero-content {
+                padding: 40px 60px;
+            }
+
+            .hero-content::before {
+                display: none;
+            }
+
+            .hero-visual {
+                height: 300px;
+                page-break-inside: avoid;
+            }
+
+            .hero-title {
+                font-size: 28pt;
+                margin-bottom: 20px;
+            }
+
+            .hero-subtitle {
+                font-size: 12pt;
+                max-width: none;
+            }
+
+            .section-divider {
+                margin: 30px 60px;
+                opacity: 1;
+                transform: none;
+                border-top: 1pt solid #ccc;
+            }
+
+            .services,
+            .credentials {
+                padding: 40px 0;
+                page-break-inside: avoid;
+            }
+
+            .service-item {
+                page-break-inside: avoid;
+                border-bottom: 1pt solid #ccc;
+            }
+
+            .service-header {
+                padding: 15px 0;
+                background: none !important;
+            }
+
+            .service-name {
+                font-size: 16pt;
+                transform: none !important;
+            }
+
+            .service-content {
+                max-height: none !important;
+                display: block !important;
+            }
+
+            .service-inner {
+                padding: 20px 0;
+                display: block;
+            }
+
+            .service-features li::after {
+                display: none;
+            }
+
+            .quote-section {
+                background: #fff !important;
+                color: #000 !important;
+                padding: 40px 0;
+                page-break-inside: avoid;
+            }
+
+            .quote-section::before {
+                display: none;
+            }
+
+            .quote-grid {
+                display: block;
+            }
+
+            .quote-image {
+                width: 200px;
+                float: right;
+                margin-left: 30px;
+                margin-bottom: 20px;
+            }
+
+            .quote-content blockquote {
+                font-size: 14pt;
+                margin-bottom: 20px;
+            }
+
+            .quote-author {
+                border-top: 1pt solid #ccc;
+            }
+
+            .credentials-grid {
+                display: block;
+                background: none;
+                gap: 0;
+            }
+
+            .credential-card {
+                background: none;
+                padding: 20px 0;
+                border-bottom: 1pt solid #eee;
+                page-break-inside: avoid;
+            }
+
+            .credential-card:hover {
+                background: none;
+            }
+
+            .contact {
+                padding: 30px 0;
+                border-top: 2pt solid #000;
+            }
+
+            .contact-grid {
+                display: block;
+            }
+
+            .contact-item {
+                margin-bottom: 15px;
+                padding: 0;
+            }
+
+            .contact-value {
+                font-size: 12pt;
+            }
+
+            .footer {
+                text-align: center;
+                border-top: 1pt solid #ccc;
+                margin-top: 30px;
+                padding-top: 20px;
+                justify-content: center;
+            }
+
+            a {
+                text-decoration: none;
+                color: #000;
+            }
+
+            a[href]::after {
+                content: " (" attr(href) ")";
+                font-size: 9pt;
+                color: #666;
+            }
+
+            .section-reveal {
+                opacity: 1 !important;
+                transform: none !important;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .container {
+                padding: 0 40px;
+            }
+
+            .hero {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-content {
+                padding: 140px 40px 80px;
+            }
+
+            .hero-content::before {
+                display: none;
+            }
+
+            .hero-visual {
+                height: 60vh;
+            }
+
+            .scroll-line {
+                left: 40px;
+            }
+
+            .section-divider {
+                margin: 0 40px;
+            }
+
+            .section-header {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .service-header {
+                grid-template-columns: 50px 1fr 40px;
+            }
+
+            .service-inner {
+                grid-template-columns: 1fr;
+                padding-left: 0;
+            }
+
+            .quote-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .credentials-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-grid {
+                flex-direction: column;
+                gap: 2rem;
+                align-items: flex-start;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .footer {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="container">
+            <div class="nav-inner">
+                <div class="logo">В. Санников</div>
+                <ul class="nav-links">
+                    <li><a href="#services">Услуги</a></li>
+                    <li><a href="#about">О враче</a></li>
+                    <li><a href="#contact">Контакты</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero section-reveal">
+        <div class="hero-content">
+            <div class="hero-label">Врач-реабилитолог</div>
+            <h1 class="hero-title">
+                Восстановление<br>
+                <em>движения</em>
+            </h1>
+            <p class="hero-subtitle">
+                Комплексная реабилитация после травм и операций. 
+                Индивидуальные программы для профессиональных атлетов.
+            </p>
+            <a href="https://t.me/VitalySannikov" target="_blank" class="hero.jpg">
+                Записаться на консультацию
+                <span class="hero-cta-arrow">→</span>
+            </a>
+            
+            <div class="scroll-line"></div>
+        </div>
+        <div class="hero-visual">
+            <img src="images/hero.jpg" alt="" class="hero-image">
+            <div class="hero-visual-overlay"></div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Services -->
+    <section class="services section-reveal" id="services">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-index">01</div>
+                <h2 class="section-title">Направления работы</h2>
+            </div>
+
+            <div class="services-list">
+                <!-- Service 1 -->
+                <div class="service-item" onclick="toggleService(this)">
+                    <div class="service-header">
+                        <span class="service-num">001</span>
+                        <h3 class="service-name">Спортивная подготовка</h3>
+                        <div class="service-toggle">+</div>
+                    </div>
+                    <div class="service-content">
+                        <div class="service-inner">
+                            <p class="service-desc">
+                                Индивидуальные программы для профессиональных атлетов и любителей. 
+                                Восстановление после травм, повышение спортивных результатов, 
+                                профилактика повреждений и коррекция техники движений.
+                            </p>
+                            <ul class="service-features">
+                                <li>Посттравматическая реабилитация</li>
+                                <li>Повышение спортивных результатов</li>
+                                <li>Профилактика повреждений</li>
+                                <li>Коррекция техники</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="service-item" onclick="toggleService(this)">
+                    <div class="service-header">
+                        <span class="service-num">002</span>
+                        <h3 class="service-name">Программа питания</h3>
+                        <div class="service-toggle">+</div>
+                    </div>
+                    <div class="service-content">
+                        <div class="service-inner">
+                            <p class="service-desc">
+                                Персонализированное нутрициологическое сопровождение с научным подходом. 
+                                Коррекция веса, диетология при заболеваниях, спортивное питание.
+                            </p>
+                            <ul class="service-features">
+                                <li>Коррекция веса</li>
+                                <li>Диетология при заболеваниях</li>
+                                <li>Спортивное питание</li>
+                                <li>Метаболическое тестирование</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="service-item" onclick="toggleService(this)">
+                    <div class="service-header">
+                        <span class="service-num">003</span>
+                        <h3 class="service-name">Реабилитация</h3>
+                        <div class="service-toggle">+</div>
+                    </div>
+                    <div class="service-content">
+                        <div class="service-inner">
+                            <p class="service-desc">
+                                Комплексное восстановление после операций, травм и заболеваний. 
+                                Возвращение к активной жизни через лечебную физкультуру и терапию.
+                            </p>
+                            <ul class="service-features">
+                                <li>Лечебная физкультура</li>
+                                <li>Мануальная терапия</li>
+                                <li>Физиотерапия</li>
+                                <li>Постоперационная реабилитация</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quote Section -->
+    <section class="quote-section section-reveal" id="about">
+        <div class="container">
+            <div class="quote-grid">
+                <div class="quote-image">
+                    <img src="C:\Users\Динара\Desktop\vitaly-rehab-fitness\images/portrait.jpg" alt="Виталий Санников">
+                </div>
+                <div class="quote-content">
+                    <blockquote>
+                        «Медицина — это не только наука, но и искусство восстановления 
+                        гармонии между телом и движением. Каждый пациент уникален, 
+                        и подход к лечению должен быть таким же индивидуальным.»
+                    </blockquote>
+                    <div class="quote-author">
+                        <div class="quote-name">Виталий Санников</div>
+                        <div class="quote-role">Врач-реабилитолог, 15 лет практики</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Credentials -->
+    <section class="credentials section-reveal">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-index">02</div>
+                <h2 class="section-title">Образование и опыт</h2>
+            </div>
+
+            <div class="credentials-grid">
+                <div class="credential-card">
+                    <span class="credential-year">2009</span>
+                    <h3 class="credential-title">Первый СПбГМУ</h3>
+                    <p class="credential-text">
+                        Окончил лечебный факультет по специальности лечебная физкультура 
+                        и спортивная медицина.
+                    </p>
+                </div>
+                <div class="credential-card">
+                    <span class="credential-year">2012—2014</span>
+                    <h3 class="credential-title">Стажировка в Европе</h3>
+                    <p class="credential-text">
+                        Работа в клиниках Германии и Швейцарии. Изучение современных 
+                        методик реабилитации.
+                    </p>
+                </div>
+                <div class="credential-card">
+                    <span class="credential-year">2018</span>
+                    <h3 class="credential-title">Членство в EAP</h3>
+                    <p class="credential-text">
+                        Вступление в Европейскую ассоциацию физиотерапевтов. 
+                        Разработка авторской методики.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Contact -->
+    <section class="contact section-reveal" id="contact">
+        <div class="container">
+            <div class="contact-grid">
+                <a href="https://t.me/VitalySannikov" target="_blank" class="contact-item">
+                    <span class="contact-label">Telegram</span>
+                    <span class="contact-value">@VitalySannikov</span>
+                </a>
+                
+                <a href="tel:+79990000000" class="contact-item">
+                    <span class="contact-label">Телефон</span>
+                    <span class="contact-value">+7 (999) 000-00-00</span>
+                </a>
+                
+                <a href="https://vk.com" target="_blank" class="contact-item">
+                    <span class="contact-label">ВКонтакте</span>
+                    <span class="contact-value">Виталий Санников</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer container">
+        <div class="lang-switch">
+            <button class="active" onclick="switchLang('ru')">RU</button>
+            <div class="lang-divider"></div>
+            <button onclick="switchLang('en')">EN</button>
+        </div>
+        <p>© 2024 Виталий Санников</p>
+    </footer>
+
+    <script>
+        // Section Reveal on Scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    
+                    // Animate dividers after section
+                    const divider = entry.target.nextElementSibling;
+                    if (divider && divider.classList.contains('section-divider')) {
+                        setTimeout(() => divider.classList.add('visible'), 400);
+                    }
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.section-reveal').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Service Accordion
+        function toggleService(element) {
+            const isActive = element.classList.contains('active');
+            
+            document.querySelectorAll('.service-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            if (!isActive) {
+                element.classList.add('active');
+            }
+        }
+
+        // Language Switch
+        const translations = {
+            ru: {
+                specialty: 'Врач-реабилитолог',
+                subtitle: 'Комплексная реабилитация после травм и операций. Индивидуальные программы для профессиональных атлетов.',
+                cta: 'Записаться на консультацию',
+                services: 'Направления работы',
+                sport: 'Спортивная подготовка',
+                nutrition: 'Программа питания',
+                rehab: 'Реабилитация',
+                about: 'О враче',
+                quote: '«Медицина — это не только наука, но и искусство восстановления гармонии между телом и движением. Каждый пациент уникален, и подход к лечению должен быть таким же индивидуальным.»',
+                name: 'Виталий Санников',
+                role: 'Врач-реабилитолог, 15 лет практики',
+                education: 'Образование и опыт',
+                contact: 'Контакты'
+            },
+            en: {
+                specialty: 'Rehabilitation Doctor',
+                subtitle: 'Comprehensive rehabilitation after injuries and surgeries. Individual programs for professional athletes.',
+                cta: 'Book a consultation',
+                services: 'Areas of expertise',
+                sport: 'Sports Training',
+                nutrition: 'Nutrition Program',
+                rehab: 'Rehabilitation',
+                about: 'About',
+                quote: '"Medicine is not only science but also the art of restoring harmony between body and movement. Every patient is unique, and the approach to treatment must be equally individual."',
+                name: 'Vitaly Sannikov',
+                role: 'Rehabilitation Doctor, 15 years of practice',
+                education: 'Education & Experience',
+                contact: 'Contact'
+            }
+        };
+
+        function switchLang(lang) {
+            document.querySelectorAll('.lang-switch button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            const t = translations[lang];
+            
+            document.querySelector('.hero-label').textContent = t.specialty;
+            document.querySelector('.hero-subtitle').textContent = t.subtitle;
+            document.querySelector('.hero-cta').childNodes[0].textContent = t.cta + ' ';
+            document.querySelector('.section-title').textContent = t.services;
+            
+            const serviceNames = document.querySelectorAll('.service-name');
+            serviceNames[0].textContent = t.sport;
+            serviceNames[1].textContent = t.nutrition;
+            serviceNames[2].textContent = t.rehab;
+            
+            document.querySelector('.section-index').textContent = lang === 'ru' ? '02' : '02';
+            document.querySelectorAll('.section-title')[1].textContent = t.education;
+            
+            document.querySelector('blockquote').textContent = t.quote;
+            document.querySelector('.quote-name').textContent = t.name;
+            document.querySelector('.quote-role').textContent = t.role;
+        }
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
